@@ -50,6 +50,9 @@ public:
         }
         int ans=INT_MAX;
         for(int k=i;k<j;k++){
+            if(isplaindrome(s,i,k)==false){
+                continue;
+            }
             int temp=1+solve(s,i,k)+solve(s,k+1,j);
             ans=min(ans,temp);
         }
