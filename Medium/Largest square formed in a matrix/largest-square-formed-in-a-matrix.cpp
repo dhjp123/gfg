@@ -10,67 +10,40 @@ using namespace std;
 class Solution{
 public:
     
-    int solve(vector<vector<int>> &mat,int &maxi){
-
-    int row=mat.size();
-
-    int col=mat[0].size();
-
-    vector<int>curr(col+1,0);
-
-    vector<int>next(col+1,0);
-
-    
-
-    for(int i=row-1;i>=0;i--){
-
-        for(int j=col-1;j>=0;j--){
-
-            int right=curr[j+1];
-
-            int diag=next[j+1];
-
-            int left=next[j];
-
-            
-
-            if(mat[i][j]==1){
-
-                curr[j]=1+min(diag,min(left,right));
-
-                maxi=max(curr[j],maxi);
-
-            }
-
-            else{
-
-                curr[j]=0;
-
-            }
-
-        
-
-        }
-
-            next=curr;
-
-        
-
-    }
-
-    return next[0];
-
-}
+   
+   
 
     int maxSquare(int n, int m, vector<vector<int>> mat){
 
         // code here
 
-        int mx=0;
-
-        solve(mat,mx);
-
-        return mx;
+       
+      // int m=  mat.size();
+       // int n= mat[0].size();
+        vector<vector<int>>dp(n,vector<int>(m,0));
+        int ans=0;
+        for (int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==0||j==0){
+                    if(mat[i][j]==1){
+                        dp[i][j]=1;
+                    }
+                }
+                else{
+                    if(mat[i][j]==1){
+                        dp[i][j]=min(dp[i-1][j],min(dp[i][j-1],dp[i-1][j-1]))+1;
+                    }
+                    else{
+                        dp[i][j]=0;
+                    }
+                }
+                ans= max(ans,dp[i][j]);
+                
+               
+               
+            }
+        }
+        return ans;
 
     }
 };
