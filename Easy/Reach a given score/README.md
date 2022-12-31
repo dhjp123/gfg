@@ -1,0 +1,26 @@
+<h2><a href="https://practice.geeksforgeeks.org/problems/reach-a-given-score-1587115621/1">Reach a given score</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Consider a game where a player can score <strong>3</strong> or <strong>5</strong> or <strong>10</strong> points in a move. Given a total score <strong>n</strong>, find number of distinct combinations&nbsp;to reach the given score.</span></p>
+
+<pre><span style="font-size:18px"><strong>Example:</strong></span>
+<span style="font-size:18px"><strong>Input</strong>
+3
+8
+20
+13</span>
+<span style="font-size:18px"><strong>Output</strong>
+1
+4
+2
+<strong>Explanation</strong>
+For 1st example when n = 8
+{ 3, 5 } and {5, 3} are the 
+two possible permutations but 
+these represent the same 
+cobmination. Hence output is 1.</span></pre>
+
+<p><span style="font-size:18px"><strong>Your Task:&nbsp;&nbsp;</strong><br>
+You don't need to read input or print anything. Your task is to complete the function&nbsp;<strong>count( )</strong>&nbsp;which takes <strong>N as</strong>&nbsp;input parameter&nbsp;and returns the answer to the problem.</span></p>
+
+<p><span style="font-size:18px"><strong>Constraints:</strong><br>
+1 ≤ <strong>T</strong> ≤ 100<br>
+1 ≤ <strong>n</strong> ≤ 1000</span></p>
+</div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Dynamic Programming</code>&nbsp;<code>Algorithms</code>&nbsp;
