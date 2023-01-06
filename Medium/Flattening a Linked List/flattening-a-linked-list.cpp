@@ -1,20 +1,21 @@
 //{ Driver Code Starts
+//Initial Template for C++
+
 #include <bits/stdc++.h>
-
-struct Node{
-	int data;
-	struct Node * next;
-	struct Node * bottom;
-	
-	Node(int x){
-	    data = x;
-	    next = NULL;
-	    bottom = NULL;
-	}
-	
-};
-
 using namespace std;
+
+struct Node {
+    int data;
+    struct Node * next;
+    struct Node * bottom;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+        bottom = NULL;
+    }
+
+};
 
 void printList(Node *Node)
 {
@@ -25,74 +26,8 @@ void printList(Node *Node)
     }
 }
 
-Node* flatten (Node* root);
-
-int main(void) {
-
-	int t;
-	cin>>t;
-	while(t--){
-    int n,m,flag=1,flag1=1;
-    struct Node * temp=NULL;
-	struct Node * head=NULL;
-	struct Node * pre=NULL;
-	struct Node * tempB=NULL;
-	struct Node * preB=NULL;
-		cin>>n;
-        int work[n];
-		for(int i=0;i<n;i++)
-            cin>>work[i];
-		for(int i=0;i<n;i++){
-			m=work[i];
-			--m;
-			int data;
-			scanf("%d",&data);
-			temp = new Node(data);
-			temp->next = NULL;
-			temp->bottom = NULL;
-			
-			if(flag){
-				head = temp;
-				pre = temp;
-				flag = 0;
-				flag1 = 1;
-			}
-			else{
-				pre->next = temp;
-				pre = temp;
-				flag1 = 1;
-			}
-			for(int j=0;j<m;j++){
-				
-				int temp_data;
-				scanf("%d",&temp_data);
-				tempB = new Node(temp_data);
-
-				if(flag1){
-					temp->bottom=tempB;
-					preB=tempB;
-					flag1=0;
-				}
-				else{
-					preB->bottom=tempB;
-					preB=tempB;
-				}
-			}
-		}
-		   Node *fun = head;
-		   Node *fun2=head;
-
-            Node* root = flatten(head);
-            printList(root);
-            cout<<endl;
-
-	}
-	return 0;
-}
 
 // } Driver Code Ends
-
-
 /* Node structure  used in the program
 
 struct Node{
@@ -109,58 +44,121 @@ struct Node{
 };
 */
 
-/*  Function which returns the  root of 
-    the flattened linked list. */
-
-Node *flatten(Node *root)
-
-{
-
-   if(root->next == NULL) return root;
-
+class Solution {
+public:
    
+    Node* dhruv(Node* l1, Node* l2) {
 
-   Node* nxt = flatten(root->next);
+    // base cases
 
-   
+    if (l1 == nullptr) return l2;
 
-   Node* botm = root;
+    if (l2 == nullptr) return l1;
 
-   
+ 
 
-   while(1){
+    Node* result;
 
-       
+    if (l1->data < l2->data) {
 
-        while(botm->bottom != NULL && botm->bottom->data <= nxt->data)
+        result = l1;
 
-            botm = botm->bottom;
+        result->bottom = dhruv(l1->bottom, l2);
 
-        
+    } else {
 
-        if(botm->bottom == NULL){
+        result = l2;
 
-            botm->bottom = nxt;
+        result->bottom = dhruv(l1, l2->bottom);
 
-            break;
+    }
 
-        }
-
-        else{
-
-            Node* temp = botm->bottom;
-
-            botm->bottom = nxt;
-
-            nxt = temp;
-
-        }
-
-   }
-
-   return root;
+    return result;
 
 }
 
+ 
+
+    Node *flatten(Node *root)
+
+    {
+
+        // Your code here
+
+        if (root == nullptr || root->next == nullptr) return root;
+
+ 
+
+    return dhruv(root, flatten(root->next));
+
+    }
+};
 
 
+//{ Driver Code Starts.
+
+int main(void) {
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m, flag = 1, flag1 = 1;
+        struct Node * temp = NULL;
+        struct Node * head = NULL;
+        struct Node * pre = NULL;
+        struct Node * tempB = NULL;
+        struct Node * preB = NULL;
+        cin >> n;
+        int work[n];
+        for (int i = 0; i < n; i++)
+            cin >> work[i];
+        for (int i = 0; i < n; i++) {
+            m = work[i];
+            --m;
+            int data;
+            scanf("%d", &data);
+            temp = new Node(data);
+            temp->next = NULL;
+            temp->bottom = NULL;
+
+            if (flag) {
+                head = temp;
+                pre = temp;
+                flag = 0;
+                flag1 = 1;
+            }
+            else {
+                pre->next = temp;
+                pre = temp;
+                flag1 = 1;
+            }
+            for (int j = 0; j < m; j++) {
+
+                int temp_data;
+                scanf("%d", &temp_data);
+                tempB = new Node(temp_data);
+
+                if (flag1) {
+                    temp->bottom = tempB;
+                    preB = tempB;
+                    flag1 = 0;
+                }
+                else {
+                    preB->bottom = tempB;
+                    preB = tempB;
+                }
+            }
+        }
+        Node *fun = head;
+        Node *fun2 = head;
+
+        Solution ob;
+        Node* root = ob.flatten(head);
+        printList(root);
+        cout << endl;
+
+    }
+    return 0;
+}
+
+// } Driver Code Ends
