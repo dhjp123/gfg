@@ -108,29 +108,22 @@ class Solution {
     // Convert a given tree to a tree where every node contains sum of values of
     // nodes in left and right subtrees in the original tree
     int dhruv(Node*root){
-
-      if(!root)return 0;
-
-      int cur=root->data;
-
-      int l=dhruv(root->left);
-
-      int r=dhruv(root->right);
-
-      root->data=l+r;
-
-      return cur+l+r;
-
-  }
-
-    void toSumTree(Node *node)
-
-    {
-
-        dhruv(node);
-
+        if(root==nullptr){
+            return 0;
+            
+        }
+        int l= dhruv(root->left);
+        int r= dhruv(root->right);
+        int temp = l+r+root->data;
+        root->data= l+r;
+        return temp;
+        
     }
-    
+    void toSumTree(Node *root)
+    {
+        // Your code here
+        dhruv(root);
+    }
 };
 
 //{ Driver Code Starts.
