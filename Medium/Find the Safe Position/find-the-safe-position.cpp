@@ -5,31 +5,32 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
+     int solve(int &ans,vector<int>v,int index,int k){
+        if(v.size()==1){
+            ans=v[0];
+            return ans;
+        }
+        index=(index+k)%v.size();
+        v.erase(v.begin()+index);
+        return solve(ans,v,index,k);
+        
+    }
   
   
-    int safePos(int n, int k) {
+    int safePos(int n, int k) 
+    {
+        k=k-1;
+       vector<int>v;
+       int ans=-1;
+       int index=0;
+       for(int i=1;i<=n;i++){
+           v.push_back(i);
+       }
+       int res=solve(ans,v,index,k);
+       return res;
         // code here
-        vector<int>v(n);
-        for(int i=0;i<n;i++)
-        {
-            v[i]=i;
-        }
-        int index=0;
-
-        while(v.size()>1)
-
-        {
-
-            index=index+k-1;
-
-            index=index%v.size();
-
-            v.erase(v.begin()+index);
-
-        }
-
-        return v[0]+1;
-
+        
+        
     }
         
         
