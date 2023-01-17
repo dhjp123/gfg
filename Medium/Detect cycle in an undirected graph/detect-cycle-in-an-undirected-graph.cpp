@@ -4,42 +4,46 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
-  public:
-    // Function to detect cycle in an undirected graph.
-    bool dfsrec(vector<int> adj[],int s ,bool visited[],int parent){
-        visited[s]=true;
-        for(int u:adj[s]){
-            if(visited[u]==false){
-                if(dfsrec(adj,u,visited,s)==true){
-                    return true;
+    private:
+    bool bfs(int x,int vis[],vector<int>adj[]){
+        vis[x]=1;
+        queue<pair<int,int>>q;
+        q.push({x,-1});
+        while(!q.empty()){
+            int a= q.front().first;
+            int b= q.front().second;
+            q.pop();
+            for(auto it:adj[a]){
+                if(!vis[it]){
+                    vis[it]=1;
+                    q.push({it,a});
+                    
                 }
-               
-               
-            }
-            else if(u!=parent)
-            {
-                 
-                return true;
-                
-            }
-        }
-        return false;
-    }
-    bool isCycle(int v, vector<int> adj[]) {
-        // Code here
-        bool visited[v];
-        for(int i=0;i<v;i++){
-            visited[i]=false;
-        }
-        for(int i=0;i<v;i++){
-            if(visited[i]==false){
-                if(dfsrec(adj,i,visited,-1)== true){
+                else if(b!=it){
                     return true;
                 }
             }
         }
         return false;
         
+        
+        
+    }
+    
+    public:
+  
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(int v, vector<int> adj[]) {
+        // Code here
+        int vis[v]={0};
+        for(int i=0;i<v;i++){
+            if(!vis[i]){
+                if(bfs(i,vis,adj)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 };
 
