@@ -9,51 +9,55 @@ using namespace std;
 
 class Solution{
     public:
-    string findOrder(string dict[], int N, int K) {
+    	vector<int> topoSort(int v, vector<int> adj[]) 
+	{
+	    // code here
+	    int indgree[v]={0};
+	    for(int i=0;i<v;i++){
+	        for(auto it:adj[i]){
+	            indgree[it]++;
+	        }
+	    }
+	    queue<int>q;
+	    for(int i=0;i<v;i++){
+	        if(indgree[i]==0){
+	            q.push(i);
+	        }
+	    }
+	    vector<int>ans;
+	    while(!q.empty()){
+	        int x= q.front();
+	        q.pop();
+	        ans.push_back(x);
+	        for(auto it:adj[x]){
+	            indgree[it]--;
+	            if(indgree[it]==0){
+	                q.push(it);
+	            }
+	        }
+	    }
+	    return ans;
+	}
+    string findOrder(string dict[], int n, int k) {
         //code here
-         vector<int> adj[K];
-        int inDegree[K]={0};
-        for(int i=0;i<N-1;i++)
-        {
-            int j=0;
-            int len = min(dict[i].size(),dict[i+1].size());
-            for(int j=0;j<len;j++)
-            {
-                if(dict[i][j]!=dict[i+1][j])
-                {
-                    adj[dict[i][j]-'a'].push_back(dict[i+1][j]-'a');
+        vector<int>adj[k];
+        for(int i=0;i<n-1;i++){
+            string s1= dict[i];
+            string s2= dict[i+1];
+            int l= min(s1.size(),s2.size());
+            for(int j=0;j<l;j++){
+                if(s1[j]!=s2[j]){
+                    adj[s1[j]-'a'].push_back(s2[j]-'a');
                     break;
                 }
             }
         }
-        queue<int> q;
-        for(int i=0;i<K;i++)
-        {
-            for(auto it: adj[i])
-            {
-                inDegree[it]++;
-            }
+        vector<int>topo=topoSort(k,adj);
+        string ans="";
+        for(auto it:topo){
+            ans+=char(it+'a');
         }
-        for(int i=0;i<K;i++)
-        {
-            if(inDegree[i]==0)
-                q.push(i);
-        }
-        string order="";
-        while(!q.empty())
-        {
-            int curr=q.front();
-            order+=char(curr+'a');
-            q.pop();
-            for(auto it: adj[curr])
-            {
-                inDegree[it]--;
-                if(inDegree[it]==0)
-                    q.push(it);
-            }
-        }
-        return order;
-    
+        return ans;
     }
 };
 
