@@ -12,23 +12,31 @@ class Solution {
     int minVal(int a, int b) {
         // code here
         int y=__builtin_popcount(b);
-        int m=y;
-        int ans=0;
-        for(int i=31;i>=0 &&m;i--){
-            if(a&(1<<i)){
-                ans|=(1<<i);
-                m--;
-                
+        int z=__builtin_popcount(a);
+        int diff=abs(y-z);
+        if(diff==0){
+            return a;
+            
+        }
+        else if(z>y){
+            while(diff>0){
+                a=a&(a-1);
+                diff--;
+            }
+            
+        }
+        else{
+            while(diff>0){
+                a=a|(a+1);
+                diff--;
             }
         }
-        for(int i=0;i<=31&&m;i++){
-            if((ans&(1<<i))==0){
-                ans|=(1<<i);
-                m--;
-            }
-        }
-        return ans;
+        return a;
+        
     }
+        
+        
+        
 };
 
 //{ Driver Code Starts.
