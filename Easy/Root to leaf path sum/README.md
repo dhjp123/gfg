@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/root-to-leaf-path-sum/1?page=2&status[]=unsolved&sortBy=submissions">Root to leaf path sum</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a binary tree and an integer S, check whether there is root to leaf path with its sum as S.</span></p>
+<h2><a href="https://practice.geeksforgeeks.org/problems/root-to-leaf-path-sum/1">Root to leaf path sum</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a binary tree and an integer S, check whether there is root to leaf path with its sum as S.</span></p>
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
