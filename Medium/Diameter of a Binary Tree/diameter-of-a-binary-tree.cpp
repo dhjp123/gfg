@@ -93,27 +93,23 @@ struct Node
 
 class Solution {
   public:
+    int dhruv(Node*root,int &res){
+        if(root==nullptr){
+            return 0;
+        }
+        int l=dhruv(root->left,res);
+        int r=dhruv(root->right,res);
+        int temp= 1+max(l,r);
+        int ans= max(temp,1+l+r);
+        res= max(res,ans);
+        return temp;
+    }
     // Function to return the diameter of a Binary Tree.
     int diameter(Node* root) {
         // Your code here
-        if(root==NULL) return 0;
-        int d1=1+height(root->left)+height(root->right);
-        int d2=diameter(root->left);
-        int d3=diameter(root->right);
-        return max(d1,max(d2,d3));
-        
-        
-    }
-    int height(Node*root){
-        int res=0;
-        if (root==NULL){
-            return 0;
-        }
-        int l1=height(root->left);
-        int r1=height(root->right);
-        res=max(res,l1+r1+1);
-        return 1+max(l1,r1);
-        
+        int res=INT_MIN;
+        dhruv(root,res);
+        return res;
     }
 };
 
