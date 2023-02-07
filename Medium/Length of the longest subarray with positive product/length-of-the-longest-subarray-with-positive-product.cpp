@@ -15,63 +15,118 @@ class Solution {
         // Function to return the length of the
         //longest subarray with ppositive product
         int maxLength(vector<int> &arr,int n){
-             int ans=0,len=0;
+              int maxlen=0;
 
-           int c=0;
+          long long  int prod=1;
+
+          
+
+           int len=0;
 
            for(int i=0;i<n;i++)
 
            {
 
-                c=c+(arr[i]<0);
+               if(arr[i]>0)
 
-                len++;
+               {
 
-                if(c%2==0 && arr[i]!=0)
+                   arr[i]=1;
 
-                    ans=max(ans,len);
+               }
 
-                if(arr[i]==0)
+               if(arr[i]<0)
 
-                {
+               {
 
-                    c=0;
+                   arr[i]=-1;
 
-                    len=0;
+               }
 
-                }
+               
+
+               prod*=arr[i];
+
+               len++;
+
+               if(prod>0)
+
+               {
+
+                   maxlen=max(len,maxlen);
+
+                  //cout<<prod<<" "<<endl;
+
+               }
+
+               if(prod==0)
+
+               {
+
+                   len=0;
+
+                   prod=1;
+
+               }
+
+               
+
+               
 
            }
 
-          len=0;
+           len=0;
 
-          c=0;
+           prod=1;
 
-          for(int i=n-1;i>=0;i--)
+           for(int i=n-1;i>=0;i--)
 
-          {
+           {
 
-                c=c+(arr[i]<0);
+                if(arr[i]>0)
 
-                len++;
+               {
 
-                if(c%2==0 && arr[i]!=0)
+                   arr[i]=1;
 
-                    ans=max(ans,len);
+               }
 
-                if(arr[i]==0)
+                 if(arr[i]<0)
 
-                {
+               {
 
-                    c=0;
+                   arr[i]=-1;
 
-                    len=0;
+               }
 
-                }
+               prod*=arr[i];
 
-          }
+               len++;
 
-          return ans;
+               if(prod>0)
+
+               {
+
+                   maxlen=max(maxlen,len);
+
+               }
+
+               if(prod==0)
+
+               {
+
+                   len=0;
+
+                   prod=1;
+
+               }
+
+           }
+
+           
+
+           return maxlen;
+         
            //code here
         }
 };
