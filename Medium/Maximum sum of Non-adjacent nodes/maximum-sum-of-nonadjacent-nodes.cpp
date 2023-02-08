@@ -104,57 +104,24 @@ struct Node
 class Solution{
   public:
     //Function to return the maximum sum of non-adjacent nodes.
-    
-    unordered_map<Node *,int> mp;
-
-    int msum(Node *root)
-
-    {
-
-        if(!root) return 0;
-
-        if(mp.count(root)) return mp[root];
-
-        int x = root->data;
-
-        if(root->left)
-
-        {
-
-            if(root->left->left) x=x+msum(root->left->left);
-
-            if(root->left->right) x=x+msum(root->left->right);
-
+    pair<int,int>dhruv(Node*root){
+        if(root==nullptr){
+            pair<int,int>p={0,0};
+            return p;
         }
-
-        if(root->right)
-
-        {
-
-            if(root->right->left) x=x+msum(root->right->left);
-
-            if(root->right->right) x=x+msum(root->right->right);
-
-        }
-
+        pair<int,int>left=dhruv(root->left);
+        pair<int,int>right=dhruv(root->right);
+        pair<int,int>res;
+        res.first=root->data+left.second+right.second;
+        res.second=max(left.first,left.second)+max(right.first,right.second);
+        return res;
         
-
-        int y=0 ;
-
-        if(root->left) y=y+msum(root->left);
-
-        if(root->right) y=y+msum(root->right);
-
-        return  mp[root]=max(x,y);
-
     }
-
     int getMaxSum(Node *root) 
-
     {
-
-        return msum(root); 
-
+        pair<int,int>ans= dhruv(root);
+        return max(ans.first,ans.second);
+        // Add your code here
     }
 };
 
