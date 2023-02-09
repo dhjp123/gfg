@@ -103,24 +103,31 @@ struct Node
 
 class Solution{
   public:
+  pair<int,int>dhruv(Node*root){
+      if(root==nullptr){
+          pair<int,int>s={0,0};
+          return s;
+          
+      }
+      pair<int,int>l=dhruv(root->left);
+      pair<int,int>r=dhruv(root->right);
+      pair<int,int>res;
+      //exclude
+      res.first=root->data+l.second+r.second;
+      //include
+      res.second=max(l.first,l.second)+max(r.first,r.second);
+      return res;
+      
+      
+  }
+  
     //Function to return the maximum sum of non-adjacent nodes.
-    pair<int,int>dhruv(Node*root){
-        if(root==nullptr){
-            pair<int,int>p={0,0};
-            return p;
-        }
-        pair<int,int>left=dhruv(root->left);
-        pair<int,int>right=dhruv(root->right);
-        pair<int,int>res;
-        res.first=root->data+left.second+right.second;
-        res.second=max(left.first,left.second)+max(right.first,right.second);
-        return res;
-        
-    }
     int getMaxSum(Node *root) 
     {
-        pair<int,int>ans= dhruv(root);
+
+        pair<int,int>ans=dhruv(root);
         return max(ans.first,ans.second);
+        
         // Add your code here
     }
 };
