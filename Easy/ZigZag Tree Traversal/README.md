@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/zigzag-tree-traversal/0?category%5B%5D=Tree&category%5B%5D=Tree&page=3&query=category%5B%5DTreepage3category%5B%5DTree">ZigZag Tree Traversal</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a Binary Tree. Find the Zig-Zag Level Order Traversal of the Binary Tree.</span></p>
+<h2><a href="https://practice.geeksforgeeks.org/problems/zigzag-tree-traversal/1">ZigZag Tree Traversal</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a Binary Tree. Find the Zig-Zag Level Order Traversal of the Binary Tree.</span></p>
 
 <p>&nbsp;</p>
 
