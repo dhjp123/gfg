@@ -102,25 +102,20 @@ class Solution
     void flatten(Node *root)
     {
         //code here
-        if (root == NULL) return;
-  stack < Node * > st;
-  st.push(root);
-  while (!st.empty()) {
-    Node * cur = st.top();
-    st.pop();
-
-    if (cur -> right != NULL) {
-      st.push(cur -> right);
-    }
-    if (cur -> left != NULL) {
-      st.push(cur -> left);
-    }
-    if (!st.empty()) {
-      cur -> right = st.top();
-    }
-    cur -> left = NULL;
-  }
-
+        Node*curr=root;
+        while(curr!=nullptr){
+            if(curr->left){
+                Node*prev=curr->left;
+                while(prev->right!=nullptr){
+                    prev=prev->right;
+                }
+                prev->right=curr->right;
+                curr->right=curr->left;
+                curr->left=nullptr;
+            }
+            curr=curr->right;
+            
+        }
     }
 };
 
