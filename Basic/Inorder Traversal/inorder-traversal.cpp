@@ -32,7 +32,8 @@ struct Node {
 class Solution {
   public:
     // Function to return a list containing the inorder traversal of the tree.
-    vector<int> inOrder(Node* root) {
+    vector<int> inOrder(Node* root)
+    {
         vector<int>ans;
         if(root==nullptr){
             return ans;
@@ -41,11 +42,11 @@ class Solution {
         while(curr!=nullptr){
             if(curr->left==nullptr){
                 ans.push_back(curr->data);
-                curr= curr->right;
+                curr=curr->right;
             }
             else{
                 Node*prev=curr->left;
-                while(prev->right!=nullptr && prev->right!=curr){
+                while(prev->right!=nullptr &&prev->right!=curr){
                     prev=prev->right;
                 }
                 if(prev->right==nullptr){
@@ -53,15 +54,15 @@ class Solution {
                     curr=curr->left;
                 }
                 else{
-                    prev=nullptr;
+                    prev->right=nullptr;
                     ans.push_back(curr->data);
                     curr=curr->right;
                 }
+                    
             }
-            
-            
         }
         return ans;
+        
         
     }
 };
