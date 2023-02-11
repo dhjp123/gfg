@@ -1,35 +1,70 @@
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
+
+
+// } Driver Code Ends
+class Solution{
+    public:
+    //Complete this function
+    //Function to sort the array according to frequency of elements.
+     static bool comp(pair<int,int>&a,pair<int,int>&b){
+        if(a.second==b.second){
+            return a.first<b.first;
+        }
+        return a.second>b.second;
+    }
+    vector<int> sortByFreq(int arr[],int n)
+    {
+        //Your code here
+        vector<pair<int,int>>ans;
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        for(int i=0;i<n;i++){
+            ans.push_back({arr[i],mp[arr[i]]});
+        }
+        sort(ans.begin(),ans.end(),comp);
+        vector<int>temp;
+        for(int i=0;i<n;i++){
+            temp.push_back(ans[i].first);
+        }
+        return temp;
+    }
+};
+
+//{ Driver Code Starts.
+
 int main() {
-//code
-int t;
-cin>>t;
-while(t--){
-    int n;
-    cin>>n;
-    int arr[n];
-    for(int i=0; i<n; i++)
-    cin>>arr[i];
-    
-    unordered_map<int,int>mp;
-    for(int i=0; i<n; i++)
-    mp[arr[i]]++;
-    
-    priority_queue<pair<int,int>>pq;
-    for(auto i:mp){
-        pq.push({i.second,-1*i.first});
-    }
-    
-    while(!pq.empty()){
-        int freq = pq.top().first;
-        int ele = -1*pq.top().second;
-        
-        for(int i=1;i<=freq; i++)
-            cout<<ele<<" ";
-        pq.pop();
-    }
-    cout<<endl;
+	
+	
+	int t;
+	cin >> t;
+	
+	
+	while(t--){
+	    
+	    
+	    int n;
+	    cin >> n;
+	    
+	    int a[n+1];
+	    
+	    for(int i = 0;i<n;i++){
+	        cin >> a[i];
+	    }
+	    Solution obj;
+	    vector<int> v;
+	    v = obj.sortByFreq(a,n);
+	    for(int i:v)
+	        cout<<i<<" ";
+	    cout << endl;
+	}
+	
+	return 0;
 }
-return 0;
-}
+
+
+// } Driver Code Ends
