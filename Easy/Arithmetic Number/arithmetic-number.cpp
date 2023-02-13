@@ -9,14 +9,15 @@ using namespace std;
 
 class Solution{
 public:
-    int inSequence(int A, int B, int C){
+    int inSequence(int a, int b, int c){
         // code here
-        if(C==0)
-            return (A==B);
-        if(A == B)
+        if(c==0){
+            return a==b;
+        }
+        int k=b-a;
+        if(k%c==0 &&k/c>=0){
             return 1;
-        if((B-A)%C == 0 && (B-A)/C > 0)
-            return 1;
+        }
         return 0;
     }
 };
