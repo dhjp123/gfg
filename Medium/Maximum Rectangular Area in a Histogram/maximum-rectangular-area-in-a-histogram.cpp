@@ -44,7 +44,7 @@ class Solution
         int p=-1;
         for(int i=n-1;i>=0;i--){
             if(s.size()==0){
-                right.push_back(-1);
+                right.push_back(n);
             }
             else if(s.size()>0 && s.top().first<arr[i]){
                 right.push_back(s.top().second);
@@ -55,7 +55,7 @@ class Solution
                 }
                  if(s.size()==0)
                  {
-                   right.push_back(-1);
+                   right.push_back(n);
                  }else{
                      right.push_back(s.top().second);
                  }
@@ -77,14 +77,14 @@ class Solution
         
 	    vector<int> nl = nsl(arr, n);
 	    vector<int> nr = nsr(arr, n);
-	    for(int i=0;i<nr.size();i++)
-	    {
+	   // for(int i=0;i<nr.size();i++)
+	   // {
 	        
-	     	if(nr[i]==-1)
-		    {
-		    	nr[i]=(nr.size());
-	    	}
-	    }
+	   //  	if(nr[i]==-1)
+		  //  {
+		  //  	nr[i]=(nr.size());
+	   // 	}
+	   // }
 	    long long a1, maxi= INT_MIN;
 	    for(int i=0;i<n;i++){
 	        a1= ((nr[i]-nl[i]-1)*arr[i]);
