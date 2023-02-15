@@ -50,36 +50,30 @@ public:
 
 /* The below method sorts the stack s 
 you are required to complete the below method */
+void sortv(stack<int>&s,int r){
+    if(s.size()==0 || (s.top()<=r && (!s.empty()))){
+        s.push(r);
+        return;
+        
+    }
+    int v= s.top();
+    s.pop();
+    sortv(s,r);
+    s.push(v);
+    return ;
+}
 
 
-void insert(stack<int>&s,int temp){
-    if(s.size()==0||s.top()<temp){
-        s.push(temp);
-        return;
-    }
-    int val= s.top();
-    s.pop();
-    insert(s,temp);
-    s.push(val);
-    return;
-    
-}
-void sortw(stack<int>&s){
-    if(s.size()==0){
-        return;
-    }
-    int temp= s.top();
-    s.pop();
-    sortw(s);
-    insert(s,temp);
-    
-}
 void SortedStack :: sort()
 {
+    if(s.size()==0){
+        return ;
+    }
+    int x=s.top();
+    s.pop();
+    sort();
+    
+    sortv(s,x);
+    
    //Your code here
-   sortw(s);
-   //return ;
-   //insert(s,temp);
-   
-   
 }
