@@ -11,20 +11,26 @@ using namespace std;
 class Solution{
 public:
     int isStackPermutation(int n,vector<int> &a,vector<int> &b){
-        int j=0;
         stack<int>s;
+        //int n= a.size();
+        int j=0;
         for(int i=0;i<n;i++){
             s.push(a[i]);
-            while(!s.empty() && s.top()==b[j]){
-                j++;
+            while(!s.empty() && (b[j]==s.top())){
                 s.pop();
+                j++;
             }
-        
-        
-        
+            
+            
         }
+    
+       
+       
         return s.empty();
+        
     }
+        
+    
 };
 
 //{ Driver Code Starts.
