@@ -27,10 +27,13 @@ int main(){
 }
 // } Driver Code Ends
 
-
+stack<int>ss;
 void push(stack<int>& s, int a){
 	// Your code goes here
 	s.push(a);
+	if(ss.size()==0 ||ss.top()>=a){
+	    ss.push(a);
+	}
 }
 
 bool isFull(stack<int>& s,int n){
@@ -47,17 +50,19 @@ int pop(stack<int>& s){
 	// Your code goes here
 	int x= s.top();
 	s.pop();
+	if(ss.top()==x){
+	    ss.pop();
+	}
 	return x;
 }
 
 int getMin(stack<int>& s){
+    if(ss.size()==0){
+        return -1;
+    }
+    return ss.top();
 	// Your code goes here
-	int mini=0,res=s.top();
-	while(!s.empty())
-	{
-	    mini=s.top();
-	    s.pop();
-	    res=min(res,mini);
-	}
-	return res;
+
+
+
 }
