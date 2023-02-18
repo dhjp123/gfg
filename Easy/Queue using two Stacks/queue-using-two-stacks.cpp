@@ -60,7 +60,6 @@ public:
 void StackQueue :: push(int x)
 {
     s1.push(x);
-    // Your Code
 }
 
 //Function to pop an element from queue by using 2 stacks.
@@ -70,19 +69,17 @@ int StackQueue :: pop()
         return -1;
     }
     while(!s1.empty()){
-        int z=s1.top();
+        int y=s1.top();
         s1.pop();
-        s2.push(z);
+        s2.push(y);
     }
     int ans= s2.top();
     s2.pop();
     while(!s2.empty()){
-        int m=s2.top();
+        int z=s2.top();
         s2.pop();
-        s1.push(m);
+        s1.push(z);
     }
     return ans;
-    
-    
         // Your Code       
 }
