@@ -33,19 +33,24 @@ int main()
 //function Template for C++
 
 //Function to reverse the queue.
+void solve(queue<int>&q){
+    if(q.empty()){
+        return ;
+    }
+    int x= q.front();
+    q.pop();
+    solve(q);
+    q.push(x);
+    
+    
+}
 queue<int> rev(queue<int> q)
 {
     // add code here.
-    stack<int>s;
-    //s.push(q);
-    while(q.empty()==false){
-        s.push(q.front());
-        q.pop();
-        
-    }
-    while(!s.empty()){
-        q.push(s.top());
-        s.pop();
-    }
+   
+    solve(q);
     return q;
+    
+    
+    
 }
