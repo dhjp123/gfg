@@ -77,33 +77,40 @@ struct MyQueue {
 //Function to push an element into the queue.
 void MyQueue:: push(int x)
 {
-        // Your Code
-        QueueNode*temp= new QueueNode(x);
-        if(front==nullptr){
-            front=rear=temp;
-            return;
-        }
-        rear->next = temp;
-        rear= temp;
-        return;
+    QueueNode*temp=new QueueNode(x);
+    if(front ==nullptr){
+        front=rear=temp;
+        return ;
+        
+    }
+   
+   
+    rear->next=temp;
+    rear= temp;
+    return;
+    
+        
+        
 }
 
 //Function to pop front element from the queue.
 int MyQueue :: pop()
 {
-        // Your Code
-        int a;
-        if(front==nullptr){
-            return -1;
-        }
-        QueueNode*temp=front;
-        front =front->next;
-        a=temp->data;
-        delete temp;
-        return a;
-        //front =front->next;
-        if(front==nullptr){
-            rear=nullptr;
-        }
-       // delete temp;
+    int a;
+    if(front==nullptr){
+        return -1;
+    }
+    QueueNode* tp=front;
+    
+    
+   
+   
+    front=front->next;
+    a= tp->data;
+    delete tp;
+    return a;
+    if(front==nullptr){
+        rear= nullptr;
+    }
+        // Your Code       
 }
