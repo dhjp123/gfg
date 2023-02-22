@@ -1,16 +1,16 @@
 //{ Driver Code Starts
 //Initial template for C++
 
-#include <bits/stdc++.h>
-using namespace std;
+#include<bits/stdc++.h> 
+using namespace std; 
 
 // } Driver Code Ends
 //User function template for C++
 
-class Solution{
-  public:
-    int  t[1002][1002];
-    int lcs(int x, int y, string t1, string t2)
+class Solution{   
+public:
+    //int  dp[1002][1002];
+    int lcs(string &t1, string &t2)
     {
         // your code here
         
@@ -24,34 +24,29 @@ class Solution{
         }
         return dp[n1][n2];
     }
-
-    int longestPalinSubseq(string a) {
-        //code here
-        int m= a.length();
-        string b=a;
-        reverse(b.begin(),b.end());
-        int n= b.length();
-        return lcs(m,n,a,b);
-    }
-    int countMin(string a){
-    //complete the function here
-    int s=a.length();
-    return s-longestPalinSubseq(a);
+    int findMinInsertions(string s){
+        string str=s;
+        reverse(str.begin(),str.end());
+        return s.size()-lcs(s,str);
+        
+        // code here 
     }
 };
 
 //{ Driver Code Starts.
+
+
+
 int main(){
     int t;
-    cin >> t;
+    cin>>t;
     while(t--){
-        string str;
-        cin >> str;
+        string S;
+        cin>>S;
         Solution ob;
-        cout << ob.countMin(str) << endl;
+        cout<<ob.findMinInsertions(S)<<endl;
     }
-return 0;
+    return 0;
 }
-
 
 // } Driver Code Ends
