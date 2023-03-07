@@ -96,33 +96,37 @@ class Solution{
   public:
     /*You are required to complete below method */
     int maxLevelSum(Node* root) {
-        // Your code here
         if(root==nullptr){
             return 0;
         }
+       // vector<int>ans;
+        priority_queue<int>pq;
         queue<Node*>q;
+        int ans= INT_MIN;
         q.push(root);
-        int sum=0;
-        int ans=INT_MIN;
+      
+      
         while(!q.empty()){
+              int sum=0;
             int n= q.size();
             for(int i=0;i<n;i++){
-                Node*curr=q.front();
-                q.pop();
-                sum+=curr->data;
-                if(curr->left!=nullptr){
+                 Node*curr= q.front();
+                 q.pop();
+                 //int sum=0;
+                 sum+=curr->data;
+                 pq.push(sum);
+                 if(curr->left){
                     q.push(curr->left);
-                }
-                if(curr->right!=nullptr){
-                    q.push(curr->right);
-                }
-               
-               
-            }
-             ans=max(ans,sum);
-             sum=0;
+                  }
+                  if(curr->right){
+                     q.push(curr->right);
+                   }
+                 
                 
-        
+            }
+             ans= max(ans,sum);
+          
+          
         }
         return ans;
     }
