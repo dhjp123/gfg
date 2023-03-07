@@ -107,12 +107,11 @@ class Solution{
       
       
         while(!q.empty()){
-              int sum=0;
+            int sum=0;
             int n= q.size();
             for(int i=0;i<n;i++){
                  Node*curr= q.front();
                  q.pop();
-                 //int sum=0;
                  sum+=curr->data;
                  pq.push(sum);
                  if(curr->left){
@@ -128,6 +127,7 @@ class Solution{
           
           
         }
+        //return pq.top();
         return ans;
     }
 };
