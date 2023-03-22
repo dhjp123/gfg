@@ -104,29 +104,34 @@ struct Node
 class Solution{
     public:
     //Function to check whether a binary tree is balanced or not.
-    pair<bool,int>dhruv(Node*root){
-        if(root==nullptr){
-            pair<bool,int>p={true,0};
-            return p;
+    int height(Node*root){
+         if(root==nullptr){
+            return 0;
         }
-        pair<bool,int>left=dhruv(root->left);
-        pair<bool,int>right=dhruv(root->right);
-        pair<bool,int>ans;
-        int op1=left.second;
-        int op2=right.second;
-        int h= max(op1,op2)+1;
-        if(left.first && right.first && (abs(op1-op2)<=1)){
-            ans.first=true;
-            ans.second=h;
+        int lh=height(root->left);
+        if(lh==-1){
+            return -1;
         }
-        
-        return ans;
-        
+        int rh=height(root->right);
+        if(rh==-1){
+            return -1;
+        }
+        if(abs(lh-rh)>1){
+            return -1;
+        }
+        return 1+max(lh,rh);
     }
+    
     bool isBalanced(Node *root)
     {
-        dhruv(root).first;
-        //  Your Code here
+        int h= height(root);
+        if(h==-1){
+            return false;
+        }
+        else{
+            return true;
+        }
+       
     }
 };
 
