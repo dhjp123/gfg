@@ -8,38 +8,39 @@ using namespace std;
 
 class Solution {
   public:
-  int dfs(int start,vector<int>adjlis[],int vis[]){
-      vis[start]=1;
-      //int cnt=0;
-      for(auto x: adjlis[start]){
-          if(!vis[x]){
-            //  cnt++;
-              dfs(x,adjlis,vis);
+  void dfs(int s,int vis[],vector<int>adjl[]){
+      vis[s]=1;
+      for(auto it:adjl[s]){
+          if(!vis[it]){
+              vis[it]=1;
+              dfs(it,vis,adjl);
           }
       }
-    //  return cnt;
+      
   }
     int numProvinces(vector<vector<int>> adj, int v) {
-        // code here
         int cnt=0;
-        vector<int>adjlis[v];
-        for(int i=0;i<v;i++){
-            for(int j=0;j<v;j++){
-                if(adj[i][j]==1 && i!=j){
-                    adjlis[i].push_back(j);
-                    adjlis[j].push_back(i);
+       // vector<vector<int>>vis(n,vector<int>(m,0));
+       int vis[v]={0};
+        vector<int>adjl[v];
+        int n= adj.size();
+        int m= adj[0].size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(adj[i][j]==1 && i!=j)
+                {
+                     adjl[i].push_back(j);
+                     adjl[j].push_back(i);
                     
                 }
-                
-                
+               
             }
         }
-        int vis[v]={0};
         int start=0;
         for(int i=0;i<v;i++){
             if(!vis[i]){
                 cnt++;
-                dfs(i,adjlis,vis);
+                dfs(i,vis,adjl);
             }
         }
         return cnt;
