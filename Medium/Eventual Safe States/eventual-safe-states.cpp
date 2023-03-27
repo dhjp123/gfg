@@ -16,12 +16,12 @@ class Solution {
       check[sc]=0;
       for(auto it:adj[sc]){
             if(!vis[it]){
-               // check[it]=0;
+                //check[sc]=0;
                 if(dfs(it, vis, adj, check,pathvis) == true)
                 return true;
             }
             else if(pathvis[it] )
-            //check[it]=0;
+            //check[sc]=0;
             return true;
         }
         
