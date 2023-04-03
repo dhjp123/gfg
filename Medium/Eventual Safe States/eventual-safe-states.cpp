@@ -10,46 +10,43 @@ using namespace std;
 
 class Solution {
   public:
-  bool dfs(int sc,int vis[],vector<int>adj[],int check[],int pathvis[]){
-      vis[sc]=1;
-      pathvis[sc]=1;
-      check[sc]=0;
-      for(auto it:adj[sc]){
-            if(!vis[it]){
-                //check[sc]=0;
-                if(dfs(it, vis, adj, check,pathvis) == true)
-                return true;
-            }
-            else if(pathvis[it] )
-            //check[sc]=0;
-            return true;
-        }
-        
-        pathvis[sc] = 0;
-        check[sc] = 1;
-        return false;
-        
-        
-    }
-      
-  
     vector<int> eventualSafeNodes(int v, vector<int> adj[]) {
-        // code here
-        int vis[v]={0};
-        int pathvis[v]={0};
-        int check[v]={0};
-        vector<int>safestate;
+        int ind[v]={0};
+        vector<int>adjrev[v];
         for(int i=0;i<v;i++){
-            if(!vis[i]){
-                dfs(i,vis,adj,check,pathvis);
+            for(auto it: adj[i]){
+               
+                adjrev[it].push_back(i);
+               
             }
         }
         for(int i=0;i<v;i++){
-            if(check[i]==1){
-                safestate.push_back(i);
+            for(auto it:adjrev[i]){
+                ind[it]++;
             }
         }
-        return safestate;
+        queue<int>q;
+	    vector<int>topo;
+	    for(int i=0;i<v;i++){
+	        if(ind[i]==0){
+	           // topo.push_back()
+	            q.push(i);
+	        }
+	    }
+	    while(!q.empty()){
+	        int node= q.front();
+	        q.pop();
+	        topo.push_back(node);
+	        for(auto j:adjrev[node]){
+	            ind[j]--;
+	            if(ind[j]==0){
+	                q.push(j);
+	            }
+	        }
+	    }
+	    sort(topo.begin(),topo.end());
+	    return topo;
+        
     }
 };
 
