@@ -8,41 +8,33 @@ using namespace std;
 // User function Template for C++
 class Solution {
   public:
-    vector<int> shortestPath(vector<vector<int>>& edges, int n,int m, int sc){
-        // code here
+    vector<int> shortestPath(vector<vector<int>>& edges, int n,int M, int src){
         vector<int>adj[n];
-        for(int i=0;i<edges.size();i++){
-            int u= edges[i][0];
-            int v= edges[i][1];
-            adj[u].push_back(v);
-            adj[v].push_back(u);
+        for(auto i:edges){
+            adj[i[0]].push_back(i[1]);
+            adj[i[1]].push_back(i[0]);
         }
-        int dist[n];
-        for(int i=0;i<n;i++){
-            dist[i]=1e9;
-        }
-        dist[sc]=0;
+        vector<int>dis(n,1e9);
         queue<int>q;
-        q.push(sc);
+        q.push(src);
+        dis[src]=0;
         while(!q.empty()){
-            int x= q.front();
+            int node= q.front();
             q.pop();
-            for(auto it:adj[x]){
-                if(dist[x]+1<dist[it]){
-                    dist[it]=1+dist[x];
+            for(auto it:adj[node]){
+                if(dis[node]+1<dis[it]){
+                    dis[it]=dis[node]+1;
                     q.push(it);
                 }
             }
         }
         vector<int>ans(n,-1);
         for(int i=0;i<n;i++){
-            if(dist[i]!=1e9){
-                //ans.push_back(dist[i]);
-                ans[i]=dist[i];
+            if(dis[i]!=1e9){
+                ans[i]=dis[i];
             }
         }
         return ans;
-        
     }
 };
 
