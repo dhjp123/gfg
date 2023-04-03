@@ -11,12 +11,9 @@ class Solution
     vector<int> findOrder(int v, int m, vector<vector<int>>arr) 
     {
          vector<int>adj[v];
-         for(int i=0;i<m;i++){
-             int u= arr[i][0];
-             int v= arr[i][1];
-             adj[v].push_back(u);
-         }
-	    
+        for(auto i:arr){
+            adj[i[1]].push_back(i[0]);
+        }
 	    
 	    
 	    int indgree[v]={0};
