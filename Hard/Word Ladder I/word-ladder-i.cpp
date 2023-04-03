@@ -5,36 +5,32 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    int wordLadderLength(string startWord, string targetWord,
-    vector<string>& wordList) {
-        // Code here
-        queue<pair<string,int>>q;
-        q.push({startWord,1});
-        set<string>st(wordList.begin(),wordList.end());
-        st.erase(startWord);
-        while(!q.empty()){
-            string a= q.front().first;
-            int cnt= q.front().second;
-            q.pop();
-            if(a==targetWord){
-                return cnt;
-            }
-            
-            for(int i=0;i<a.size();i++){
-                char orgin= a[i];
-                for(char ch='a';ch<='z';ch++){
-                     a[i]=ch;
-                    if(st.find(a)!=st.end()){
-                        st.erase(a);
-                        q.push({a,cnt+1});
-                    }
-                }
-                a[i]=orgin;
-                
-            }
-            
-        }
-        return 0;
+    int wordLadderLength(string startword, string targetword, vector<string>& wordList) {
+       queue<pair<string,int>>q;
+       q.push({startword,1});
+       unordered_set<string>s(wordList.begin(),wordList.end());
+       s.erase(startword);
+       while(!q.empty()){
+           string pr= q.front().first;
+           int step= q.front().second;
+           q.pop();
+           if(pr==targetword){
+               return step;
+           }
+           for(int i=0;i<pr.size();i++){
+               char orgi= pr[i];
+               for(char ch='a';ch<='z';ch++){
+                   pr[i]=ch;
+                   if(s.find(pr)!=s.end()){
+                       s.erase(pr);
+                       q.push({pr,step+1});
+                   }
+                   
+               }
+               pr[i]=orgi;
+           }
+       }
+       return 0;
     }
 };
 
