@@ -10,36 +10,16 @@ class Solution
     //Function to return the total number of possible unique BST. 
     int numTrees(int n) 
     {
-       
-        const int mod=1e9+7;
-
-        vector<long long>dhruv(n+1,0);
-
-        dhruv[0]=1;
-
-        dhruv[1]=1;
-
- 
-
-    for (int i = 2; i <= n; i++)
-
-    {
-
-        for (int j = 0; j < i; j++)
-
-        {
-
-            dhruv[i]=(dhruv[i]+ (dhruv[j]*dhruv[i-j-1])%mod)%mod;
-
+        int mod= 1e9+7;
+        vector<long long int>dp(n+1,0);
+        dp[0]=dp[1]=1;
+        for(long long int i=2;i<=n;i++){
+            for(long long int j=0;j<i;j++ ){
+                dp[i]= (dp[i]+(dp[j]*dp[i-j-1]))%mod;
+            }
         }
-
+        return dp[n]%mod;
         
-
-    }
-
-    
-
-    return dhruv[n]%mod;
     }
 };
 
